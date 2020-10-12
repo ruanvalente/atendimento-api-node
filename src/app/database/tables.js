@@ -1,10 +1,10 @@
 class Tables {
   init(connection) {
     this.connection = connection
-    this.createCalls()
+    this.createAttendance()
   }
 
-  createCalls() {
+  createAttendance() {
     const sql = `CREATE TABLE IF NOT EXISTS atendimentos(
       id INT NOT NULL AUTO_INCREMENT,
       cliente VARCHAR(50) NOT NULL,

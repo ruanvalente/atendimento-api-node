@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const atendimentoController = require('./controllers/atendimentoController')
+const attendanceController = require('./controllers/attendanceController')
 
-router.get('/', atendimentoController.index)
-// router.get('/a/:id', atendimentoController.show)
-router.post('/', atendimentoController.create)
-// router.put('/user/:id', atendimentoController.update)
-// router.delete('/user/:id', atendimentoController.destroy)
+router.get('/', attendanceController.index)
+// router.get('/a/:id', attendanceController.show)
+router.post('/', attendanceController.create)
+// router.put('/user/:id', attendanceController.update)
+// router.delete('/user/:id', attendanceController.destroy)
 
 module.exports = router
