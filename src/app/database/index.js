@@ -6,22 +6,4 @@ const connection = mysql.createConnection({
   password: 'docker',
   database: 'agenda_petshop',
 })
-
-const query = `CREATE TABLE IF NOT EXISTS agenda_petshop(
-  id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255) NOT NULL,
-  age INT(2) NOT NULL,
-  phone VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE,
-  PRIMARY KEY(id)
-);`
-
-connection.execute(query, (error) => {
-  if (error) {
-    console.error(error)
-  } else {
-    console.log('Tabela criada')
-  }
-})
-
 module.exports = connection
