@@ -1,12 +1,13 @@
 const mysql = require('mysql2')
 const connection = mysql.createConnection({
   host: 'localhost',
+  port: 3306,
   user: 'root',
   password: 'docker',
-  database: 'atendimento',
+  database: 'agenda_petshop',
 })
 
-const query = `CREATE TABLE IF NOT EXISTS atendimento(
+const query = `CREATE TABLE IF NOT EXISTS agenda_petshop(
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
   age INT(2) NOT NULL,

@@ -12,8 +12,8 @@ server.listen(process.env.PORT, (error) => {
         console.error(error)
       } else {
         console.log('conectado com o banco')
+        console.log(`Servidor rodando 🚀 http://localhost:${PORT}`)
       }
     })
-    console.log(`Servidor rodando 🚀 http://localhost:${PORT}`)
   }
 })
