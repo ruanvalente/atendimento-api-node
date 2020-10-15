@@ -4,7 +4,7 @@ const attendanceController = require('./controllers/attendanceController')
 
 router.get('/', attendanceController.index)
 // router.get('/a/:id', attendanceController.show)
-router.post('/', attendanceController.create)
+router.post('/', attendanceController.store)
 // router.put('/user/:id', attendanceController.update)
 // router.delete('/user/:id', attendanceController.destroy)
 
