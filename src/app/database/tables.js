@@ -12,7 +12,7 @@ class Tables {
       servico VARCHAR(20) NOT NULL,
       status VARCHAR(20) NOT NULL,
       data DATETIME NOT NULL,
-      dataCricao DATETIME NOT NULL,
+      dataCriacao DATETIME NOT NULL,
       observacoes text,
       PRIMARY KEY (id)
     );`
