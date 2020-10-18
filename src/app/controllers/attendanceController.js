@@ -2,7 +2,7 @@ const attendanceModel = require('../models/attendanceModel')
 
 module.exports = {
   index(request, response) {
-    response.json({ message: 'Atendimento ok' })
+    attendanceModel.index(response)
   },
 
   store(request, response) {

@@ -1,7 +1,18 @@
 const moment = require('moment')
-const connection = require('../database/index')
-
+const connection = require('../config/index')
 class Attendance {
+  index(response) {
+    const sql = `SELECT * FROM atendimentos`
+
+    connection.query(sql, (error, result) => {
+      if (error) {
+        return response.status(400).json({ message: error.message })
+      } else {
+        return response.status(200).json({ data: result })
+      }
+    })
+  }
+
   store(attendance, response) {
     const attendanceDate = moment().format('YYYY-MM-DD HH:MM:SS')
     const data = moment(attendance.data, 'DD/MM/YYYY').format(
