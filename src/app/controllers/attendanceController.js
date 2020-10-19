@@ -1,14 +1,23 @@
 const attendanceModel = require('../models/attendanceModel')
 
 module.exports = {
-  index(request, response) {
-    attendanceModel.index(response)
+  async index(request, response) {
+    try {
+      const attendances = await attendanceModel.index()
+      return response.status(200).json({ data: attendances })
+    } catch (error) {
+      return response.status(400).json({ message: error.message })
+    }
   },
 
-  store(request, response) {
-    const data = request.body
+  async store(request, response) {
+    try {
+      const data = request.body
 
-    const attendance = attendanceModel.store(data, response)
-    return response.status(201).json(attendance)
+      await attendanceModel.store(data)
+      return response.status(201).json({})
+    } catch (error) {
+      return response.status(400).json({ message: error.message })
+    }
   },
 }
