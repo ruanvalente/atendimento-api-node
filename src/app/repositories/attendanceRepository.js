@@ -26,7 +26,26 @@ const create = (connection, data, tableName) => {
   })
 }
 
+const findByID = (connection, id, tableName) => {
+  const sql = `SELECT * FROM ${tableName} WHERE id = ${id}`
+
+  return new Promise((resolve, reject) => {
+    connection.query(sql, (error, result) => {
+      if (error || !tableName) {
+        reject(error)
+      }
+
+      if (result.length > 0) {
+        resolve(result[0])
+      } else {
+        resolve()
+      }
+    })
+  })
+}
+
 module.exports = {
   findAll,
   create,
+  findByID,
 }
