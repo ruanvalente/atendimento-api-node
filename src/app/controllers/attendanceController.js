@@ -20,4 +20,19 @@ module.exports = {
       return response.status(400).json({ message: error.message })
     }
   },
+
+  async show(request, response) {
+    try {
+      const { id } = request.params
+      const attendance = await attendanceModel.show(id)
+
+      if (!attendance) {
+        return response.status(404).json({ message: 'Registro não encontrado' })
+      }
+
+      return response.status(200).json({ data: attendance })
+    } catch (error) {
+      return response.status(400).json({ message: error.message })
+    }
+  },
 }

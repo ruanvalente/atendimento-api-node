@@ -50,7 +50,17 @@ const store = async (attendance) => {
   return createAttendance
 }
 
+const show = async (id) => {
+  const attendance = await attendanceRepository.findByID(
+    connection,
+    id,
+    'atendimentos'
+  )
+  return attendance
+}
+
 module.exports = {
   index,
   store,
+  show,
 }
