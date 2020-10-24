@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3000
 const connection = require('./config/index')
 const attendanceTable = require('./database/attendance-table')
 
-server.listen(process.env.PORT, (error) => {
+server.listen(PORT, (error) => {
   if (error) {
     console.error(error)
   } else {
