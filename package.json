@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/app/server.js"
+    "dev": "nodemon --inspect src/app/server.js"
   },
   "license": "MIT",
   "dependencies": {

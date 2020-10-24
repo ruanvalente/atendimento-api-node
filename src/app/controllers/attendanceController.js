@@ -15,8 +15,9 @@ module.exports = {
       const data = request.body
 
       await attendanceModel.store(data)
-      return response.status(201).json({})
+      return response.status(201).send()
     } catch (error) {
+      console.log(error)
       return response.status(400).json({ message: error.message })
     }
   },

@@ -35,7 +35,7 @@ const store = async (attendance) => {
   const errosExist = erros.length
 
   if (errosExist) {
-    return erros
+    throw Error(erros[0].message)
   }
 
   const createAttendance = await attendanceRepository.create(
