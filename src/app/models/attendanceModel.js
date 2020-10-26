@@ -2,10 +2,15 @@ const moment = require('moment')
 const connection = require('../config/index')
 const attendanceRepository = require('../repositories/attendanceRepository')
 
-const index = async () => {
+const index = async (request) => {
+  const params = {
+    pageSize: request.query.pageSize || 5,
+    currentPage: request.query.page || 0,
+  }
   const attendances = await attendanceRepository.findAll(
     connection,
-    'atendimentos'
+    'atendimentos',
+    params
   )
   return attendances
 }

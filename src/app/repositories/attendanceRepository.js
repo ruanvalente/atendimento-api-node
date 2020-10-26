@@ -1,14 +1,36 @@
-const findAll = (connection, tableName) => {
-  const sql = `SELECT * FROM ${tableName}`
+const findAll = (connection, tableName, params) => {
+  const offSet = params.currentPage * params.pageSize
+  const pageSize = params.pageSize
+
+  const sql = `SELECT * FROM ${tableName} LIMIT ${offSet}, ${pageSize}`
 
   return new Promise((resolve, reject) => {
-    connection.query(sql, (error, result) => {
-      if (error || !tableName) {
-        reject(error)
-      } else {
-        resolve(result)
+    connection.query(
+      `SELECT COUNT(*) AS total FROM ${tableName}`,
+      (error, result) => {
+        const total = result[0].total
+        const totalPage = parseInt(total / pageSize)
+        if (error) {
+          reject(error)
+        } else {
+          connection.query(sql, (error, result) => {
+            if (error || !tableName) {
+              reject(error)
+            } else {
+              resolve({
+                data: result,
+                pagination: {
+                  pages: totalPage,
+                  pageSize,
+                  currentPage: parseInt(params.currentPage),
+                  total,
+                },
+              })
+            }
+          })
+        }
       }
-    })
+    )
   })
 }
 
