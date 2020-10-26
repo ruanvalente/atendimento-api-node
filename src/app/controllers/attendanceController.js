@@ -3,8 +3,8 @@ const attendanceModel = require('../models/attendanceModel')
 module.exports = {
   async index(request, response) {
     try {
-      const attendances = await attendanceModel.index()
-      return response.status(200).json({ data: attendances })
+      const attendances = await attendanceModel.index(request)
+      return response.status(200).json(attendances)
     } catch (error) {
       return response.status(400).json({ message: error.message })
     }
