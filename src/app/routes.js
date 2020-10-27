@@ -5,7 +5,7 @@ const attendanceController = require('./controllers/attendanceController')
 router.get('/', attendanceController.index)
 router.get('/:id', attendanceController.show)
 router.post('/', attendanceController.store)
-// router.put('/user/:id', attendanceController.update)
+router.put('/:id', attendanceController.update)
 // router.delete('/user/:id', attendanceController.destroy)
 
 module.exports = router

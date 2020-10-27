@@ -36,4 +36,17 @@ module.exports = {
       return response.status(400).json({ message: error.message })
     }
   },
+
+  async update(request, response) {
+    try {
+      const { id } = request.params
+      const attendance = request.body
+
+      await attendanceModel.update(attendance, id)
+
+      return response.status(200).json({ data: attendance })
+    } catch (error) {
+      return response.status(400).json({ message: error.message })
+    }
+  },
 }
