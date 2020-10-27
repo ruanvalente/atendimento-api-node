@@ -1,7 +1,6 @@
 const findAll = (connection, tableName, params) => {
   const offSet = params.currentPage * params.pageSize
   const pageSize = params.pageSize
-
   const sql = `SELECT * FROM ${tableName} LIMIT ${offSet}, ${pageSize}`
 
   return new Promise((resolve, reject) => {
@@ -10,6 +9,7 @@ const findAll = (connection, tableName, params) => {
       (error, result) => {
         const total = result[0].total
         const totalPage = parseInt(total / pageSize)
+        console.log(result)
         if (error) {
           reject(error)
         } else {
@@ -66,8 +66,23 @@ const findByID = (connection, id, tableName) => {
   })
 }
 
+const update = (connection, data, id, tablename) => {
+  const sql = `UPDATE ${tablename} SET status='${data.status}', observacoes='${data.observacoes}' WHERE id = ${id}`
+
+  return new Promise((resolve, reject) => {
+    connection.query(sql, (error, result) => {
+      if (error || !tablename) {
+        reject(error)
+      } else {
+        resolve(result)
+      }
+    })
+  })
+}
+
 module.exports = {
   findAll,
   create,
   findByID,
+  update,
 }

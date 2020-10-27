@@ -64,8 +64,20 @@ const show = async (id) => {
   return attendance
 }
 
+const update = async (values, id) => {
+  const attendance = await attendanceRepository.update(
+    connection,
+    values,
+    id,
+    'atendimentos'
+  )
+
+  return attendance
+}
+
 module.exports = {
   index,
   store,
   show,
+  update,
 }
