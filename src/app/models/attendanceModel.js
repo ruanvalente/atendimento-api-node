@@ -75,9 +75,23 @@ const update = async (values, id) => {
   return attendance
 }
 
+const destroy = async (id) => {
+  if (!id) {
+    throw Error('Falha ao remover registro')
+  }
+  const attendenceRemove = await attendanceRepository.destroy(
+    connection,
+    id,
+    'atendimentos'
+  )
+
+  return attendenceRemove
+}
+
 module.exports = {
   index,
   store,
   show,
   update,
+  destroy,
 }

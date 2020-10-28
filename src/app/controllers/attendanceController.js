@@ -49,4 +49,19 @@ module.exports = {
       return response.status(400).json({ message: error.message })
     }
   },
+
+  async destroy(request, response) {
+    try {
+      const { id } = request.params
+      const idExist = await attendanceModel.show(id)
+
+      if (!idExist) {
+        return response.status(404).json({ message: 'Registro não encontrado' })
+      }
+      await attendanceModel.destroy(id)
+      return response.status(204).send()
+    } catch (error) {
+      return response.status(400).json({ message: error.message })
+    }
+  },
 }
