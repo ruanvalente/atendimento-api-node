@@ -9,7 +9,6 @@ const findAll = (connection, tableName, params) => {
       (error, result) => {
         const total = result[0].total
         const totalPage = parseInt(total / pageSize)
-        console.log(result)
         if (error) {
           reject(error)
         } else {
@@ -80,9 +79,24 @@ const update = (connection, data, id, tablename) => {
   })
 }
 
+const destroy = (connection, id, tableName) => {
+  const sql = `DELETE FROM ${tableName} WHERE id = ${id} LIMIT 1`
+
+  return new Promise((resolve, reject) => {
+    connection.query(sql, (error) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve()
+      }
+    })
+  })
+}
+
 module.exports = {
   findAll,
   create,
   findByID,
   update,
+  destroy,
 }
